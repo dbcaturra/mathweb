@@ -1,0 +1,15 @@
+{% load static %}
+<h1>{{ question.question_text }}</h1>
+
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+  <div style="margin:15px;">
+    <img style="float:left;" width="100px" src="/static/polls/photos/{{choice.get_photo}}" />
+    <input style="margin-top:25px;" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br style="clear:left;"/>
+  </div>
+{% endfor %}
+<input style="margin:15px;" type="submit" value="Vote" />
+</form>

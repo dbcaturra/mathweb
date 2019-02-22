@@ -1,0 +1,4 @@
+#!/bin/bash
+cloud_sql_proxy -instances=community-173:us-central1:mathweb-instance=tcp:3306 -credential_file=/home/blackpitch/mathweb/key.json &
+python3 manage.py runserver
+
